@@ -384,8 +384,12 @@ export default function RegexBlaster() {
   const [patternHistory, setPatternHistory] = useState([]);
   const [historyIdx, setHistoryIdx] = useState(-1);
   const [bossWave, setBossWave] = useState(0);
-  const [bossHighScore, setBossHighScore] = useState(0);
-  const [bossHighWave, setBossHighWave] = useState(0);
+  const [bossHighScore, setBossHighScore] = useState(() => {
+    try { return Number(localStorage.getItem('regex-blaster-boss-highscore')) || 0; } catch { return 0; }
+  });
+  const [bossHighWave, setBossHighWave] = useState(() => {
+    try { return Number(localStorage.getItem('regex-blaster-boss-highwave')) || 0; } catch { return 0; }
+  });
   const [waveAnnounce, setWaveAnnounce] = useState(null);
 
   const inputRef = useRef(null);
@@ -803,8 +807,16 @@ export default function RegexBlaster() {
   // Update boss high scores on game over
   useEffect(() => {
     if (phase === 'gameover' && stage === 'boss') {
-      setBossHighScore(prev => Math.max(prev, score));
-      setBossHighWave(prev => Math.max(prev, bossWave + 1));
+      setBossHighScore(prev => {
+        const next = Math.max(prev, score);
+        try { localStorage.setItem('regex-blaster-boss-highscore', next); } catch {}
+        return next;
+      });
+      setBossHighWave(prev => {
+        const next = Math.max(prev, bossWave + 1);
+        try { localStorage.setItem('regex-blaster-boss-highwave', next); } catch {}
+        return next;
+      });
     }
   }, [phase, stage, score, bossWave]);
 
@@ -1679,15 +1691,13 @@ export default function RegexBlaster() {
                   <span style={{ color: '#ffcc00', fontWeight: 700 }}>Score</span>
                   <span style={{ color: '#ffcc00', fontWeight: 700, fontSize: '18px' }}>{score}</span>
                 </div>
+                <div style={{ borderTop: '1px solid #1a2a3a', paddingTop: '10px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', fontSize: '12px' }}>
+                  <span style={{ color: '#556' }}>High Score</span>
+                  <span style={{ color: '#556' }}>Wave {Math.max(bossHighWave, bossWave + 1)} · {Math.max(bossHighScore, score)}pts</span>
+                </div>
                 {(score > bossHighScore || bossWave + 1 > bossHighWave) && (
-                  <div style={{ textAlign: 'center', color: '#ffcc00', fontSize: '12px', fontWeight: 700, letterSpacing: '2px' }}>
-                    NEW RECORD!
-                  </div>
-                )}
-                {score <= bossHighScore && bossWave + 1 <= bossHighWave && bossHighScore > 0 && (
-                  <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '11px' }}>
-                    <span style={{ color: '#445' }}>Best</span>
-                    <span style={{ color: '#445' }}>Wave {bossHighWave} · {bossHighScore}pts</span>
+                  <div style={{ textAlign: 'center', color: '#ffcc00', fontSize: '12px', fontWeight: 700, letterSpacing: '2px', marginTop: '8px', animation: 'pulse 1s infinite' }}>
+                    ★ NEW RECORD! ★
                   </div>
                 )}
               </>
