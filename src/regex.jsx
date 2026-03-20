@@ -350,7 +350,7 @@ function buildSpawnQueue(enemies, friendlies) {
     [allStrings[i], allStrings[j]] = [allStrings[j], allStrings[i]];
   }
   return allStrings.map(s => {
-    const textWidth = Math.max(60, s.text.length * 11 + 24);
+    const textWidth = Math.max(65, s.text.length * 12 + 28);
     return {
       ...s,
       id: uid(),
@@ -854,17 +854,17 @@ export default function RegexBlaster() {
   // Cheat sheet panel
   const cheatSheetPanel = (
     <div style={{
-      width: '220px',
+      width: '240px',
       background: '#0a1020',
       border: '1px solid #1a2a3a',
       borderRadius: '8px',
       padding: '12px',
-      fontSize: '11px',
+      fontSize: '13px',
       flexShrink: 0,
     }}>
       <div style={{
         fontWeight: 800,
-        fontSize: '11px',
+        fontSize: '12px',
         color: '#667',
         letterSpacing: '2px',
         marginBottom: '10px',
@@ -975,7 +975,7 @@ export default function RegexBlaster() {
           }}>
             REGEX BLASTER
           </div>
-          <div style={{ fontSize: '14px', color: '#667', marginBottom: '50px', letterSpacing: '3px' }}>
+          <div style={{ fontSize: '16px', color: '#667', marginBottom: '50px', letterSpacing: '3px' }}>
             PATTERN MATCHING DEFENSE
           </div>
 
@@ -1005,10 +1005,10 @@ export default function RegexBlaster() {
                 color: '#00f0ff',
                 marginBottom: '6px',
               }}>TRAINING</div>
-              <div style={{ fontSize: '11px', color: '#556', lineHeight: 1.5 }}>
+              <div style={{ fontSize: '13px', color: '#556', lineHeight: 1.5 }}>
                 Learn with hints
               </div>
-              <div style={{ fontSize: '11px', color: '#334', marginTop: '10px' }}>
+              <div style={{ fontSize: '13px', color: '#334', marginTop: '10px' }}>
                 {maxTrainingLevel}/{TRAINING_LEVELS.length} cleared
               </div>
             </button>
@@ -1038,10 +1038,10 @@ export default function RegexBlaster() {
                 color: '#ff0080',
                 marginBottom: '6px',
               }}>COMBAT</div>
-              <div style={{ fontSize: '11px', color: '#556', lineHeight: 1.5 }}>
+              <div style={{ fontSize: '13px', color: '#556', lineHeight: 1.5 }}>
                 No hints. No mercy.
               </div>
-              <div style={{ fontSize: '11px', color: '#334', marginTop: '10px' }}>
+              <div style={{ fontSize: '13px', color: '#334', marginTop: '10px' }}>
                 {maxCombatLevel}/{COMBAT_LEVELS.length} cleared
               </div>
             </button>
@@ -1071,16 +1071,16 @@ export default function RegexBlaster() {
                 color: '#ffcc00',
                 marginBottom: '6px',
               }}>BOSS</div>
-              <div style={{ fontSize: '11px', color: '#556', lineHeight: 1.5 }}>
+              <div style={{ fontSize: '13px', color: '#556', lineHeight: 1.5 }}>
                 Endless. Survive.
               </div>
-              <div style={{ fontSize: '11px', color: '#334', marginTop: '10px' }}>
+              <div style={{ fontSize: '13px', color: '#334', marginTop: '10px' }}>
                 {bossHighWave > 0 ? `Best: Wave ${bossHighWave}` : 'Unplayed'}
               </div>
             </button>
           </div>
 
-          <div style={{ fontSize: '12px', color: '#445', maxWidth: '500px', lineHeight: 1.6, margin: '0 auto', textAlign: 'center' }}>
+          <div style={{ fontSize: '14px', color: '#445', maxWidth: '500px', lineHeight: 1.6, margin: '0 auto', textAlign: 'center' }}>
             Write regex patterns to destroy falling strings.
             <span style={{ color: '#ff6b35' }}> 👾 Orange = enemies</span>
             {' '}(destroy them).
@@ -1102,7 +1102,7 @@ export default function RegexBlaster() {
           }}>
             {STAGES[stage].icon} {STAGES[stage].name.toUpperCase()}
           </div>
-          <div style={{ fontSize: '12px', color: '#445', marginBottom: '30px' }}>
+          <div style={{ fontSize: '14px', color: '#445', marginBottom: '30px' }}>
             {stage === 'training' ? 'Guided missions with hints' : 'No hints — use the cheat sheet'}
           </div>
 
@@ -1124,7 +1124,7 @@ export default function RegexBlaster() {
                     borderRadius: '6px',
                     color: locked ? '#333' : '#c8d6e5',
                     fontFamily: "'JetBrains Mono', monospace",
-                    fontSize: '13px',
+                    fontSize: '14px',
                     cursor: locked ? 'not-allowed' : 'pointer',
                     textAlign: 'left',
                     display: 'flex',
@@ -1138,7 +1138,7 @@ export default function RegexBlaster() {
                     <span style={{ color: stageColor, marginRight: '10px' }}>{String(lv.id).padStart(2, '0')}</span>
                     {lv.name}
                   </span>
-                  <span style={{ color: '#667', fontSize: '11px' }}>{lv.concept}</span>
+                  <span style={{ color: '#667', fontSize: '13px' }}>{lv.concept}</span>
                 </button>
               );
             })}
@@ -1161,7 +1161,7 @@ export default function RegexBlaster() {
               BACK
             </button>
           </div>
-          <div style={{ marginTop: '16px', fontSize: '11px', color: '#334' }}>
+          <div style={{ marginTop: '16px', fontSize: '13px', color: '#334' }}>
             Press ENTER to start next level
           </div>
         </div>
@@ -1179,15 +1179,15 @@ export default function RegexBlaster() {
               alignItems: 'center',
               padding: '8px 0',
               marginBottom: '4px',
-              fontSize: '13px',
+              fontSize: '15px',
             }}>
               <div>
                 {stage === 'boss' ? (
                   <>
                     <span style={{ color: '#ffcc00' }}>💀 </span>
                     <span style={{ color: '#ffcc00', fontWeight: 700 }}>WAVE {bossWave + 1}</span>
-                    <span style={{ color: '#667', fontSize: '11px', marginLeft: '8px' }}>{bossWaveData.name}</span>
-                    {bossCycle > 0 && <span style={{ color: '#ff6b35', fontSize: '11px', marginLeft: '6px' }}>×{bossCycle + 1}</span>}
+                    <span style={{ color: '#667', fontSize: '13px', marginLeft: '8px' }}>{bossWaveData.name}</span>
+                    {bossCycle > 0 && <span style={{ color: '#ff6b35', fontSize: '13px', marginLeft: '6px' }}>×{bossCycle + 1}</span>}
                   </>
                 ) : (
                   <>
@@ -1289,7 +1289,7 @@ export default function RegexBlaster() {
                     top: s.y,
                     padding: '4px 12px',
                     borderRadius: '4px',
-                    fontSize: '14px',
+                    fontSize: '15px',
                     fontWeight: 600,
                     whiteSpace: 'nowrap',
                     transition: s.matched ? 'none' : 'box-shadow 0.15s, border-color 0.15s',
@@ -1363,7 +1363,7 @@ export default function RegexBlaster() {
               <div style={{
                 width: GAME_W,
                 padding: '8px 0 6px',
-                fontSize: '12px',
+                fontSize: '14px',
                 color: '#445',
                 display: 'flex',
                 justifyContent: 'space-between',
@@ -1374,7 +1374,7 @@ export default function RegexBlaster() {
                   {currentLevel.hint}
                 </span>
                 {currentLevel.friendlies.length > 0 && (
-                  <span style={{ fontSize: '11px', whiteSpace: 'nowrap', marginLeft: '12px' }}>
+                  <span style={{ fontSize: '13px', whiteSpace: 'nowrap', marginLeft: '12px' }}>
                     <span style={{ color: '#ff6b35' }}>👾 shoot</span>
                     <span style={{ margin: '0 6px', color: '#333' }}>·</span>
                     <span style={{ color: '#00ff88' }}>🛡 don't shoot</span>
@@ -1385,7 +1385,7 @@ export default function RegexBlaster() {
               <div style={{
                 width: GAME_W,
                 padding: '8px 0 6px',
-                fontSize: '11px',
+                fontSize: '13px',
                 color: '#334',
                 display: 'flex',
                 justifyContent: 'space-between',
@@ -1430,7 +1430,7 @@ export default function RegexBlaster() {
                     borderRadius: '6px',
                     color: patternLoaded ? '#ffcc00' : '#e0e8f0',
                     fontFamily: "'JetBrains Mono', monospace",
-                    fontSize: '15px',
+                    fontSize: '16px',
                     outline: 'none',
                     caretColor: stageColor,
                     transition: 'border-color 0.2s, color 0.2s, background 0.2s',
@@ -1479,7 +1479,7 @@ export default function RegexBlaster() {
             </div>
 
             {error && (
-              <div style={{ width: GAME_W, padding: '6px 0', fontSize: '12px', color: '#ff0040' }}>
+              <div style={{ width: GAME_W, padding: '6px 0', fontSize: '14px', color: '#ff0040' }}>
                 ⚠ {error}
               </div>
             )}
@@ -1490,7 +1490,7 @@ export default function RegexBlaster() {
               const enemyMatches = active.filter(s => s.isEnemy && previewRegex.test(s.text)).length;
               const friendlyMatches = active.filter(s => !s.isEnemy && previewRegex.test(s.text)).length;
               return (enemyMatches > 0 || friendlyMatches > 0) ? (
-                <div style={{ width: GAME_W, padding: '4px 0', fontSize: '12px', display: 'flex', gap: '16px' }}>
+                <div style={{ width: GAME_W, padding: '4px 0', fontSize: '14px', display: 'flex', gap: '16px' }}>
                   {enemyMatches > 0 && (
                     <span style={{ color: '#00f0ff' }}>⎯ {enemyMatches} enem{enemyMatches === 1 ? 'y' : 'ies'} targeted</span>
                   )}
@@ -1506,7 +1506,7 @@ export default function RegexBlaster() {
               display: 'flex',
               justifyContent: 'space-between',
               padding: '8px 0',
-              fontSize: '11px',
+              fontSize: '13px',
               color: '#334',
             }}>
               <span>Patterns fired: {patternsFired}{patternHistory.length > 0 ? ` · History: ${patternHistory.length}` : ''}</span>
@@ -1538,7 +1538,7 @@ export default function RegexBlaster() {
           }}>
             LEVEL CLEARED
           </div>
-          <div style={{ color: '#667', marginBottom: '30px', fontSize: '14px' }}>
+          <div style={{ color: '#667', marginBottom: '30px', fontSize: '16px' }}>
             {stageIcon} {currentLevel.name} — {currentLevel.concept}
           </div>
 
@@ -1638,7 +1638,7 @@ export default function RegexBlaster() {
               </button>
             )}
           </div>
-          <div style={{ marginTop: '16px', fontSize: '11px', color: '#334' }}>
+          <div style={{ marginTop: '16px', fontSize: '13px', color: '#334' }}>
             Press ENTER for {levelIdx < currentLevels.length - 1 ? 'next level' : 'replay'}
           </div>
         </div>
@@ -1656,7 +1656,7 @@ export default function RegexBlaster() {
           }}>
             {stage === 'boss' ? 'DEFEATED' : 'SYSTEM BREACH'}
           </div>
-          <div style={{ color: '#667', marginBottom: '30px' }}>
+          <div style={{ color: '#667', marginBottom: '30px', fontSize: '16px' }}>
             {stage === 'boss' ? (
               <>💀 Survived {bossWave + 1} wave{bossWave > 0 ? 's' : ''} · {formatTime(levelTime)}</>
             ) : (
@@ -1691,12 +1691,12 @@ export default function RegexBlaster() {
                   <span style={{ color: '#ffcc00', fontWeight: 700 }}>Score</span>
                   <span style={{ color: '#ffcc00', fontWeight: 700, fontSize: '18px' }}>{score}</span>
                 </div>
-                <div style={{ borderTop: '1px solid #1a2a3a', paddingTop: '10px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', fontSize: '12px' }}>
+                <div style={{ borderTop: '1px solid #1a2a3a', paddingTop: '10px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', fontSize: '14px' }}>
                   <span style={{ color: '#556' }}>High Score</span>
                   <span style={{ color: '#556' }}>Wave {Math.max(bossHighWave, bossWave + 1)} · {Math.max(bossHighScore, score)}pts</span>
                 </div>
                 {(score > bossHighScore || bossWave + 1 > bossHighWave) && (
-                  <div style={{ textAlign: 'center', color: '#ffcc00', fontSize: '12px', fontWeight: 700, letterSpacing: '2px', marginTop: '8px', animation: 'pulse 1s infinite' }}>
+                  <div style={{ textAlign: 'center', color: '#ffcc00', fontSize: '14px', fontWeight: 700, letterSpacing: '2px', marginTop: '8px', animation: 'pulse 1s infinite' }}>
                     ★ NEW RECORD! ★
                   </div>
                 )}
@@ -1704,7 +1704,7 @@ export default function RegexBlaster() {
             )}
             {stage !== 'boss' && (
               <>
-                <div style={{ fontSize: '14px', color: '#667', marginBottom: '8px', textAlign: 'center' }}>FINAL SCORE</div>
+                <div style={{ fontSize: '16px', color: '#667', marginBottom: '8px', textAlign: 'center' }}>FINAL SCORE</div>
                 <div style={{ fontSize: '36px', fontWeight: 800, color: '#ffcc00', textAlign: 'center' }}>{score}</div>
               </>
             )}
@@ -1752,7 +1752,7 @@ export default function RegexBlaster() {
               {stage === 'boss' ? 'AGAIN' : 'RETRY'}
             </button>
           </div>
-          <div style={{ marginTop: '16px', fontSize: '11px', color: '#334' }}>
+          <div style={{ marginTop: '16px', fontSize: '13px', color: '#334' }}>
             Press ENTER to {stage === 'boss' ? 'play again' : 'retry'}
           </div>
         </div>
